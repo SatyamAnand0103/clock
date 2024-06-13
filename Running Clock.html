@@ -1,0 +1,352 @@
+f
+<!Doctype html>
+<html lang="en">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+  <title>
+    Running Clock
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Ysabeau+SC:wght@200&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #2f363e;
+    }
+
+
+    .ClockContainer {
+      position: relative;
+      margin: auto;
+      background: #2f363e;
+      margin-top: 66px;
+      height: 450px;
+      width: 450px;
+      border-radius: 242px;
+      box-shadow: 28px 25px 22px rgba(0, 0, 0, 0.25),
+        inset -6px -6px 44px rgba(0, 0, 0, 0.5),
+        inset 2px 2px 1px rgba(0, 0, 0, 0.2),
+        inset 5px -5px 61px rgba(0, 0, 0, 0.75);
+
+
+
+
+    }
+
+    #ClockContainer1 {
+      border: 2px solid rgba(0, 0, 0, 0.25);
+      margin-top: 73px;
+      margin-left: 73px;
+      height: 300px;
+      width: 300px;
+      border-radius: 168px;
+      position: absolute;
+
+
+    }
+
+    #ClockContainer2 {
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      margin-top: 98px;
+      height: 250px;
+      width: 250px;
+      border-radius: 167px;
+      margin-left: 98px;
+      position: absolute;
+
+
+    }
+
+    #ClockContainer3 {
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      margin-top: 125px;
+      height: 200px;
+      width: 200px;
+      border-radius: 166px;
+      margin-left: 125px;
+      position: absolute;
+
+    }
+
+
+
+    #hour,
+    #minute,
+    #second {
+      position: absolute;
+      background: black;
+      transform-origin: bottom;
+
+
+    }
+
+    #hour {
+      width: 3px;
+      height: 50px;
+      top: 175px;
+      right: 223px;
+      background-color: rgb(28, 190, 188);
+
+    }
+
+    #minute {
+      width: 3px;
+      height: 80px;
+      top: 147px;
+      right: 223px;
+      background-color: yellow;
+
+    }
+
+    #second {
+      width: 1px;
+      height: 85px;
+      top: 140px;
+      right: 224px;
+      background-color: green;
+
+
+    }
+
+    .smallcircle {
+      position: absolute;
+      display: block;
+      border: 2px solid white;
+      height: 8px;
+      width: 8px;
+      border-radius: 30px;
+      margin-left: 220px;
+      margin-top: 220px;
+      background-color: darkgray;
+
+    }
+
+    .digitalclock {
+      border-radius: 66px;
+      display: flex;
+      height: 38px;
+      width: 213px;
+      margin-top: 85px;
+      margin-left: 610px;
+      padding-left: 91px;
+      padding-top: 18px;
+      font-size: 22px;
+      font-family: 'Alegreya', serif;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
+        inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+    }
+
+    #hourdc {
+      color: rgb(28, 190, 188);
+      padding-right: 5px;
+    }
+
+    #minutedc {
+      color: yellow;
+      padding-right: 5px;
+
+    }
+
+    #seconddc {
+      color: green;
+      padding-right: 5px;
+
+
+    }
+
+    #ampm {
+      color: white;
+      margin-left: 10px;
+      font-size: 14px;
+      margin-top: 3px;
+      font-family: 'Ysabeau SC', sans-serif;
+
+
+    }
+
+    #dots1 {
+      color: rgb(28, 190, 188);
+      padding-right: 5px;
+      margin-top: -2px;
+
+
+    }
+
+    #dots2 {
+      color: yellow;
+      padding-right: 5px;
+      margin-top: -2px;
+
+    }
+
+
+    .ClockContainer span {
+      position: absolute;
+      inset: 20px;
+      color: #fff;
+      text-align: center;
+      transform: rotate(calc(30deg * var(--i)));
+
+    }
+
+    .ClockContainer span b {
+      font-size: 24px;
+      opacity: 0.25;
+      font-weight: 600;
+      display: inline-block;
+      transform: rotate(calc(-30deg * var(--i)));
+
+    }
+
+    /* #dotcircle1 {
+      margin-left: 147px;
+      height: 8px;
+      width: 8px;
+      border-radius: 25px;
+      margin-top: -5px;
+      background-color: green;
+    }
+
+    #dotcircle2 {
+      margin-left: 123px;
+      height: 8px;
+      width: 8px;
+      border-radius: 25px;
+      margin-top: -4px;
+      background-color: yellow;
+    }
+
+    #dotcircle3 {
+      margin-left: 96px;
+      height: 8px;
+      width: 8px;
+      border-radius: 25px;
+      margin-top: -5px;
+      background-color: rgb(28, 190, 188);
+    } */
+  </style>
+
+  <script>
+    // Analog Clock //
+    setInterval(() => {
+      let d = new Date();
+      let htime = d.getHours();
+      let mtime = d.getMinutes();
+      let stime = d.getSeconds();
+
+      // let dc1 = document.getElementById('dotcircle1');
+      // let dc2 = document.getElementById('dotcircle2');
+      // let dc3 = document.getElementById('dotcircle3');
+
+      hrotation = 30 * htime + mtime / 2;
+      mrotation = 6 * mtime;
+      srotation = 6 * stime;
+
+      hour.style.transform = `rotate(${hrotation}deg)`;
+      minute.style.transform = `rotate(${mrotation}deg)`;
+      second.style.transform = `rotate(${srotation}deg)`;
+
+
+      // dc1.style.transform = `rotateZ(${zzz}deg)`;
+      // dc2.style.transform = `rotateZ(${mrotation}deg)`;
+      // dc3.style.transform = `rotateZ(${srotation}deg)`;
+
+
+
+
+
+      // Digital Clock //
+
+      let hours = document.getElementById('hourdc');
+      let minutes = document.getElementById('minutedc');
+      let seconds = document.getElementById('seconddc');
+      let ampm = document.getElementById('ampm');
+
+      let h = new Date().getHours();
+      let m = new Date().getMinutes();
+      let s = new Date().getSeconds();
+
+      let am = h >= 12 ? "PM" : "AM";
+
+      if (h > 12) {
+        h = h - 12;
+
+      }
+
+      h = (h < 10) ? "0" + h : h
+      m = (m < 10) ? "0" + m : m
+      s = (s < 10) ? "0" + s : s
+
+      hours.innerHTML = h;
+      minutes.innerHTML = m;
+      seconds.innerHTML = s;
+      ampm.innerHTML = am;
+
+    });
+  </script>
+
+</head>
+
+<body>
+  <div id="wholebody">
+
+    <div class="ClockContainer">
+      <div id="ClockContainer1">
+        <div id="dotcircle1">
+
+        </div>
+      </div>
+      <div id="ClockContainer2">
+        <div id="dotcircle2">
+
+        </div>
+      </div>
+      <div id="ClockContainer3">
+        <div id="dotcircle3">
+
+        </div>
+      </div>
+      <span style="--i:1"> <b>1</b></span>
+      <span style="--i:2"> <b>2</b></span>
+      <span style="--i:3"> <b>3</b></span>
+      <span style="--i:4"> <b>4</b></span>
+      <span style="--i:5"> <b>5</b></span>
+      <span style="--i:6"> <b>6</b></span>
+      <span style="--i:7"> <b>7</b></span>
+      <span style="--i:8"> <b>8</b></span>
+      <span style="--i:9"> <b>9</b></span>
+      <span style="--i:10"> <b>10</b></span>
+      <span style="--i:11"> <b>11</b></span>
+      <span style="--i:12"> <b>12</b></span>
+      <div id="hour"></div>
+      <div id="minute"></div>
+      <div id="second"></div>
+      <div class="smallcircle"></div>
+    </div>
+
+
+
+
+
+
+  </div>
+
+  <div class="digitalclock">
+    <div id="hourdc"> 00</div>
+    <div id="dots1">:</div>
+    <div id="minutedc"> 00</div>
+    <div id="dots2">:</div>
+    <div id="seconddc"> 00</div>
+
+
+    <div id="ampm"> 00</div>
+  </div>
+
+</body>
+
+</html>
